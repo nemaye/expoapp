@@ -1,21 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+//import liraries
+import { NavigationContainer } from '@react-navigation/native';
+import React, { Component } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { AuthRoute, VerifiedRoute} from './routes/route';
+// use switch case. If user LoggedIn then show verifiedRoutes else show Authroute
+// create a component
+const App = () => {
 
-export default function App() {
+  let loggedIn = false    //use redux to set this
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+		<NavigationContainer>
+      {loggedIn ? <VerifiedRoute /> : <AuthRoute />}
+		</NavigationContainer>
+    );
+};
 
+// define your styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#2c3e50',
   },
 });
+
+//make this component available to the app
+export default App;
